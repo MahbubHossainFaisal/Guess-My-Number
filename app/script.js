@@ -5,12 +5,11 @@
 //Math.trunc() will convert them to int
 //+1 is done because to get value between 1-100
 
-const secretNumber = Math.trunc((Math.random()*100))+1
-document.querySelector('.number').textContent = secretNumber;
+let secretNumber = Math.trunc((Math.random()*100))+1
+
 
 //Score value
 let score = 20;
-
 
 
 document.querySelector('.check').addEventListener('click', ()=> {
@@ -25,6 +24,8 @@ document.querySelector('.check').addEventListener('click', ()=> {
     //Correct Answer
      else if(getGuessValue === secretNumber){
         document.querySelector('.message').textContent = '🥰 Correct!!!!' 
+        document.querySelector('.number').textContent = secretNumber;
+    
         //changing body background color when winning
         document.querySelector('body').style.backgroundColor = '#006400'
         //changing number value width
@@ -145,4 +146,20 @@ document.querySelector('.check').addEventListener('click', ()=> {
         }
     }
 }) 
+
+
+document.querySelector('.again').addEventListener('click', ()=>{
+    score =20;
+    secretNumber = Math.trunc((Math.random()*100))+1
+    document.querySelector('.message').textContent = 'Start guessing ...'
+    document.querySelector('.number').textContent = '?'
+    document.querySelector('.score').textContent = score;
+
+    document.querySelector('.guess').value = ''
+    //changing body background color
+        document.querySelector('body').style.backgroundColor = '#222'
+        //changing number value width
+        document.querySelector('.number').style.width = '15rem'
+
+})
 
