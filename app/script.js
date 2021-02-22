@@ -10,6 +10,8 @@ let secretNumber = Math.trunc((Math.random()*100))+1
 
 //Score value
 let score = 20;
+let highscore = 0;
+
 
 
 document.querySelector('.check').addEventListener('click', ()=> {
@@ -25,6 +27,12 @@ document.querySelector('.check').addEventListener('click', ()=> {
      else if(getGuessValue === secretNumber){
         document.querySelector('.message').textContent = '🥰 Correct!!!!' 
         document.querySelector('.number').textContent = secretNumber;
+
+        //Adding HighScore
+        if(score>highscore){
+            highscore=score;
+        }
+        document.querySelector('.highscore').textContent = highscore;
     
         //changing body background color when winning
         document.querySelector('body').style.backgroundColor = '#006400'
