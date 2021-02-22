@@ -68,9 +68,10 @@ document.querySelector('.check').addEventListener('click', ()=> {
         }
     }
     //When guess is between secret number and 2*secretnumber
-    else if(getGuessValue > secretNumber && getGuessValue <= 2*secretNumber){
+    else if(getGuessValue > secretNumber && getGuessValue <= 2*secretNumber || getGuessValue < secretNumber && getGuessValue>= 0.5*secretNumber){
         if(score > 0 ){
-        document.querySelector('.message').textContent = '😛 A Bit High!' 
+        document.querySelector('.message').textContent = getGuessValue > secretNumber ? '😛 A Bit High!' : '😛 A Bit Low!' 
+
         score--;
         if(score <= 0){
             score =0;
@@ -83,9 +84,9 @@ document.querySelector('.check').addEventListener('click', ()=> {
     } 
     //When guess is between 2*secretnumber and 4*secretnumber
     
-    else if(getGuessValue > 2*secretNumber && getGuessValue <= 4*secretNumber){
+    else if(getGuessValue > 2*secretNumber && getGuessValue <= 4*secretNumber || getGuessValue < 0.5*secretNumber && getGuessValue >= 0.25*secretNumber){
         if(score> 0){
-        document.querySelector('.message').textContent = '🤨 Much High!'
+        document.querySelector('.message').textContent = getGuessValue > secretNumber ?'🤨 Much High!': '🤨 Much Low!'
         score=score-2;
         if(score <= 0){
             score =0;
@@ -98,9 +99,9 @@ document.querySelector('.check').addEventListener('click', ()=> {
         
     }
     //When guess is greater than 4*secretnumber
-    else if( getGuessValue > 4*secretNumber){
+    else if( getGuessValue > 4*secretNumber || getGuessValue < 0.25*secretNumber){
         if(score > 0){
-        document.querySelector('.message').textContent = '😟 Too Much High!'
+        document.querySelector('.message').textContent = getGuessValue > secretNumber ? '😟 Too Much High!' : '😟 Too Much Low!'
         score=score-3;
         if(score <= 0){
             score =0;
@@ -111,48 +112,7 @@ document.querySelector('.check').addEventListener('click', ()=> {
             document.querySelector('.message').textContent = '😭 You lost the game!!!'
         }
     } 
-    //When guess is smaller than secret number and between .5*secretNumber
-    else if(getGuessValue < secretNumber && getGuessValue>= 0.5*secretNumber){
-        if(score > 0){
-        document.querySelector('.message').textContent = '😛 A Bit Low!' 
-        score--;
-        if(score <= 0){
-            score =0;
-            document.querySelector('.message').textContent = '😭 You lost the game!!!'
-        }
-        document.querySelector('.score').textContent = score;
-        } else {
-            document.querySelector('.message').textContent = '😭 You lost the game!!!'
-        }
-    }
-    //when guess is between 0.5*secretnumber and 0.25*secretNumber
-    else if(getGuessValue < 0.5*secretNumber && getGuessValue >= 0.25*secretNumber){
-        if(score > 0){
-        document.querySelector('.message').textContent = '🤨 Much Low!' 
-        score=score-2;
-        if(score <= 0){
-            score =0;
-            document.querySelector('.message').textContent = '😭 You lost the game!!!'
-        }
-        document.querySelector('.score').textContent = score;
-        } else{
-            document.querySelector('.message').textContent = '😭 You lost the game!!!'
-        }
-    }
-    //When guess is smaller than 0.25*secretNumber
-    else if(getGuessValue < 0.25*secretNumber){
-        if(score > 0){
-        document.querySelector('.message').textContent = '😟 Too Much Low!'
-        score=score-3;
-        if(score <= 0){
-            score =0;
-            document.querySelector('.message').textContent = '😭 You lost the game!!!'
-        }
-        document.querySelector('.score').textContent = score;
-        } else{
-            document.querySelector('.message').textContent = '😭 You lost the game!!!'
-        }
-    }
+
 }) 
 
 
